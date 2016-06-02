@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
     }
 }
 
@@ -18,3 +19,4 @@ public class MainActivity extends AppCompatActivity {
 //Test Comment Kylor
 //Test Comment Ben
 //Test comment Kylor2
+//Test Comment Ben2
