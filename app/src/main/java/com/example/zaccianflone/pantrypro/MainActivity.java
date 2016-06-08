@@ -35,11 +35,21 @@ class ShoppingList {
     void addToPantry(Recipe recipe){
         //pass in a recipe
 
+        // Create a new row in the Recipe Table for the recipe
+
+        // complete recipe update.
+
     }
 
     // overload 2
-    void addToPantry(Item item) {
+    void addToPantry(Item item, String expiration) {
         // pass in a item
+
+        // Create a new row in the item table
+
+        // Add in the item with its expiration date
+
+        // Complete item update
     }
 
     // compare a recipe to another
