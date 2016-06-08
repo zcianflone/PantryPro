@@ -46,8 +46,8 @@ class Recipe {
 
     void testEdit() {
         Item test=null;
-        assert(ingredients.add(test));      //tests add and remove
-        assert(ingredients.remove(test));
+        assert(ingredients.add(test));      //tests add
+        assert(ingredients.remove(test)); //removes
     }
 
 
