@@ -10,10 +10,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        ShoppingList shop = new ShoppingList();
 
     }
 }
 
+class ShoppingList {
+    ShoppingList(){}
+
+    void addToPantry(){
+        //pass in a item or a recipe
+
+
+    }
+
+    void comprRecipe() {
+        // pass in two recipes for comparing
+
+
+    }
+
+}
 
 //Test Comment Ben3
 //Test Comment Kylor
