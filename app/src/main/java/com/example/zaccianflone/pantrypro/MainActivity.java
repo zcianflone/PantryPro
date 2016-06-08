@@ -3,6 +3,8 @@ package com.example.zaccianflone.pantrypro;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +31,38 @@ class pantry {
 
 
 class Recipe {
+
+    protected ArrayList<Item> ingredients;
+    private String name;
+
+
+    //This method should create new recipe
+    void CreateRecipe (){
+
+
+    }
+
+    //This method should add ingredients to existing recipe
+    void EditRecipe (){
+
+    }
+
+
+
+    void testCreate () {
+        assert (!ingredients.isEmpty());
+        assert (ingredients.size() <= 10000);//tests for corruption by limiting size to arbitrary amount
+        assert (name.length() != 0);
+        assert (name.length() <= 1000);
+    }
+
+
+    void testEdit() {
+        Item test=null;
+        assert(ingredients.add(test));      //tests add
+        assert(ingredients.remove(test)); //removes
+    }
+
 
 }
 
