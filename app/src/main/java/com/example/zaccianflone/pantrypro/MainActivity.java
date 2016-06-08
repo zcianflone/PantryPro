@@ -23,7 +23,7 @@ class Item {
 
 }
 
-// commit Ben Wright 6/7/16
+// commit by Ben Wright 6/7/16
 class ShoppingList {
     ShoppingList(){}
 
