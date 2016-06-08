@@ -13,6 +13,18 @@ public class MainActivity extends AppCompatActivity {
         ShoppingList shop = new ShoppingList();
 
     }
+
+}
+
+class pantry {
+    void add(){
+        // Add a new item to the pantry
+    }
+
+    void delete(){
+        // Delete an item from the pantry
+    }
+
 }
 
 class Recipe {
@@ -34,7 +46,7 @@ class ShoppingList {
 
     // overload 2
     void addToPantry(Item item) {
-        // pass in a item
+        // pass in an item
     }
 
     void comprRecipe() {
@@ -44,9 +56,3 @@ class ShoppingList {
     }
 
 }
-
-//Test Comment Ben3
-//Test Comment Kylor
-//Test Comment Ben
-//Test comment Kylor2
-//test comment ben2
