@@ -15,15 +15,26 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
+class Recipe {
+
+}
+
+class Item {
+
+}
+
 class ShoppingList {
     ShoppingList(){}
 
-    void addToPantry(){
-        //pass in a item or a recipe
+    // overload 1
+    void addToPantry(Recipe recipe){
+        //pass in a recipe
 
-        //
+    }
 
-
+    // overload 2
+    void addToPantry(Item item) {
+        // pass in a item
     }
 
     void comprRecipe() {
