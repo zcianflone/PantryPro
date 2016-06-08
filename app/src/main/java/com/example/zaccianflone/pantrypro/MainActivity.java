@@ -23,10 +23,15 @@ class Item {
 
 }
 
+// commit Ben Wright 6/7/16
 class ShoppingList {
     ShoppingList(){}
 
+
+    // it will be a good idea for addToPantry to be overloaded
+    // that way you can have one that handles a recipe and the other a
     // overload 1
+
     void addToPantry(Recipe recipe){
         //pass in a recipe
 
@@ -37,6 +42,7 @@ class ShoppingList {
         // pass in a item
     }
 
+    // compare a recipe to another
     void comprRecipe() {
         // pass in two recipes for comparing
 
