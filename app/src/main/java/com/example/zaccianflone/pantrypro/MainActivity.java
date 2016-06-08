@@ -29,13 +29,15 @@ class ShoppingList {
 
 
     // it will be a good idea for addToPantry to be overloaded
-    // that way you can have one that handles a recipe and the other a
-    // overload 1
+    // that way you can have one that handles a recipe and the other a item
 
+    // overload 1
     void addToPantry(Recipe recipe){
         //pass in a recipe
 
         // Create a new row in the Recipe Table for the recipe
+
+        // Add in the recipe with its other values (parameters if any)
 
         // complete recipe update.
 
