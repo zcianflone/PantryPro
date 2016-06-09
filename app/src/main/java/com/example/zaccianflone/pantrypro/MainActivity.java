@@ -19,12 +19,34 @@ public class MainActivity extends AppCompatActivity {
 }
 
 class pantry {
+    protected ArrayList<Item> item;
+    private String name;
+    private String date;
+    private int quantity;
+    private String expiration;
+
     void add(){
         // Add a new item to the pantry
+        Item test = null;
+
+        assert (name.length() != 0);
+        assert (name.length() <= 30);
+        assert (date.length() != 0);
+        assert (date.length() <= 30);
+        assert (quantity > 0);
+        assert (quantity <= 10000);
+        assert (expiration.length() != 0);
+        assert (expiration.length() <= 1000);
+
+        assert(item.add(test));
+
+
     }
 
     void delete(){
         // Delete an item from the pantry
+        Item test = null;
+        assert(item.remove(test));
     }
 
 }
