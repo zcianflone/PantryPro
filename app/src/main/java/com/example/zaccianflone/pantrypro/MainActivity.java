@@ -30,7 +30,6 @@ class pantry {
         Item test = null;
 
         assert (name.length() != 0);
-        assert (name.length() <= 30);
         assert (date.length() != 0);
         assert (date.length() <= 30);
         assert (quantity > 0);
@@ -94,11 +93,28 @@ class Item {
 
 // commit by Ben Wright 6/7/16
 class ShoppingList {
+
+    String name;
+    int numItems;
+    protected ArrayList<Item> ShoppingList;
     ShoppingList(){}
 
 
     // it will be a good idea for addToPantry to be overloaded
     // that way you can have one that handles a recipe and the other a item
+
+    void testShoppingList (){
+        assert(name.length() != 0);
+        assert(name.length() <= 1000);
+        assert (numItems <= 1000);
+    }
+
+    void testAddToShoppingList (){
+        Item test=null;
+        assert (ShoppingList.add(test));
+        assert (ShoppingList.remove(test));
+
+    }
 
     // overload 1
     void addToPantry(Recipe recipe){
