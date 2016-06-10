@@ -14,11 +14,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ShoppingList shop = new ShoppingList();
 
+        Pantry pantry=new Pantry();
+        pantry.testAdd();
+
     }
 
 }
 
-class pantry {
+class Pantry {
     protected ArrayList<Item> item;
     private String name;
     private String date;
@@ -26,6 +29,10 @@ class pantry {
     private String expiration;
 
     void add(){
+
+    }
+
+    void testAdd(){
         // Add a new item to the pantry
         Item test = null;
 
@@ -43,6 +50,10 @@ class pantry {
     }
 
     void delete(){
+
+    }
+
+    void testDelete(){
         // Delete an item from the pantry
         Item test = null;
         assert(item.remove(test));
