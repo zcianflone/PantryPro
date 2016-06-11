@@ -22,9 +22,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // When the user clicks add item go to add item page
+    // When the user clicks "Add Item" go to Add Item page
     public void goToAddItem(View view) {
         Intent intent = new Intent(this, AddItem.class);
+        startActivity(intent);
+    }
+
+    // When the user clicks "View Pantry" go to ViewPantry page
+    public void goToViewPantry(View view) {
+        Intent intent = new Intent(this, ViewPantry.class);
+        startActivity(intent);
+    }
+
+    // When the user clicks "Make Recipe" go to Make Recipe page
+    public void goToMakeRecipe(View view) {
+        Intent intent = new Intent(this, MakeRecipe.class);
+        startActivity(intent);
+    }
+
+    // When the user clicks "Edit Pantry" go to Edit Pantry page
+    public void goToEditPantry(View view) {
+        Intent intent = new Intent(this, EditPantry.class);
         startActivity(intent);
     }
 

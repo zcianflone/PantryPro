@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:text="Add Item"
         android:id="@+id/add_item"
-        android:layout_above="@+id/button2"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignStart="@+id/button3"
+        android:layout_above="@+id/view_pantry"
+        android:layout_alignLeft="@+id/make_recipe"
+        android:layout_alignStart="@+id/make_recipe"
         android:background="#ffffcc"
         android:textColor="@android:color/black"
         android:layout_marginBottom="50dp"
@@ -27,23 +27,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Pantry"
-        android:id="@+id/button2"
+        android:id="@+id/view_pantry"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/add_item"
         android:background="#ffffcc"
         android:textColor="@android:color/black"
-        android:layout_alignStart="@+id/add_item" />
+        android:layout_alignStart="@+id/add_item"
+        android:onClick="goToViewPantry"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Make Recipe"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button2"
+        android:id="@+id/make_recipe"
+        android:layout_below="@+id/view_pantry"
         android:layout_centerHorizontal="true"
         android:background="#ffffcc"
         android:textColor="@android:color/black"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:onClick="goToMakeRecipe"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,9 +61,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Pantry"
-        android:id="@+id/button5"
-        android:layout_below="@+id/button3"
+        android:id="@+id/edit_pantry"
+        android:layout_below="@+id/make_recipe"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp"
-        android:background="#ffffcc" />
+        android:background="#ffffcc"
+        android:onClick="goToEditPantry"/>
 </RelativeLayout>
