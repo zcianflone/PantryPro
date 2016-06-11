@@ -1,7 +1,10 @@
 package com.example.zaccianflone.pantrypro;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -14,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ShoppingList shop = new ShoppingList();
 
+    }
+
+    // When the user clicks add item go to add item page
+    public void goToAddItem(View view) {
+        Intent intent = new Intent(this, AddItem.class);
+        startActivity(intent);
     }
 
 }
