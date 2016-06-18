@@ -5,23 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MakeRecipe extends AppCompatActivity {
+public class AddItemRecipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_recipe);
+        setContentView(R.layout.activity_add_item_recipe);
     }
 
     // When the user clicks back go to Main Activity
     public void goBack(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    // When the user clicks Add Item go to Add Item to Recipe
-    public void goToAddItemRecipe(View view) {
-        Intent intent = new Intent(this, AddItemRecipe.class);
+        Intent intent = new Intent(this, MakeRecipe.class);
         startActivity(intent);
     }
 }
