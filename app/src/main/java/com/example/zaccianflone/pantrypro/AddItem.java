@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import com.firebase.client.Firebase;
+
 
 public class AddItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item2);
+        setContentView(R.layout.activity_add_item);
     }
 
         // When the user clicks back go to Main Activity
@@ -18,4 +21,16 @@ public class AddItem extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void addItem (View view) {
+
+        EditText name = (EditText) findViewById(R.id.editText6);
+        EditText expdate = (EditText) findViewById(R.id.editText7);
+        EditText quantity = (EditText) findViewById(R.id.editText8);
+        EditText unit = (EditText) findViewById(R.id.editText9);
+
+        Firebase ref=new Firebase ("https://fiery-inferno-4832.firebaseio.com");
+        ref.child("pantry").setValue(name.getText().toString());
+    }
+
 }
