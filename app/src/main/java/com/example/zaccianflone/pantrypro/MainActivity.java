@@ -3,6 +3,7 @@ package com.example.zaccianflone.pantrypro;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,8 +13,18 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            Log.d(TAG, "onCreate() Restoring previous state");
+            /* restore state */
+        } else {
+            Log.d(TAG, "onCreate() No saved state available");
+            /* initialize app */
+        }
+
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
 
@@ -31,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // When the user clicks "View Pantry" go to ViewPantry page
+    // When the user clicks "View Pantry" go to View Pantry page
     public void goToViewPantry(View view) {
         Intent intent = new Intent(this, ViewPantry.class);
         startActivity(intent);
