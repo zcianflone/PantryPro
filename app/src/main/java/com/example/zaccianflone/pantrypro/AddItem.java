@@ -4,14 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
+import java.io.IOException;
+
 
 public class AddItem extends AppCompatActivity {
+
+    private static final String TAG = "AddItem";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,7 @@ public class AddItem extends AppCompatActivity {
         EditText quantity = (EditText) findViewById(R.id.editText8);
         EditText unit = (EditText) findViewById(R.id.editText9);
 
-        Firebase ref=new Firebase ("https://fiery-inferno-4832.firebaseio.com");
+        Firebase ref = new Firebase("https://fiery-inferno-4832.firebaseio.com");
         ref.child("pantry").setValue(name.getText().toString());
 
         // Display toast message at bottom of screen when an item has been added
