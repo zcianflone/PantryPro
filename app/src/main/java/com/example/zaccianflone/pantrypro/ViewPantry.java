@@ -25,7 +25,7 @@ public class ViewPantry extends AppCompatActivity {
         // Create an ArrayAdapter using the string array located in strings.xml
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.viewPantrySpinner, android.R.layout.simple_spinner_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
         Firebase ref = new Firebase("https://fiery-inferno-4832.firebaseio.com").child("pantry");
