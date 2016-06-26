@@ -81,10 +81,6 @@ class Pantry {
         // Add a new item to the pantry
         Item test = null;
 
-        if (name.length() == 0) {
-            Log.e(TAG, "Blank name");
-        }
-
         assert (name.length() != 0);
         assert (date.length() != 0);
         assert (date.length() <= 30);
