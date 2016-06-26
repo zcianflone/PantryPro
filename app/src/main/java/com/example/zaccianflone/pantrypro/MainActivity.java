@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // When the user clicks "Edit Pantry" go to Edit Pantry page
-    public void goToEditPantry(View view) {
-        Intent intent = new Intent(this, EditPantry.class);
+    // When the user clicks "My Recipes" go to My Recipes page
+    public void goToMyRecipes(View view) {
+        Intent intent = new Intent(this, MyRecipes.class);
         startActivity(intent);
     }
 

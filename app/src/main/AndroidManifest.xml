@@ -21,7 +21,8 @@
         <activity android:name=".ViewPantry" />
         <activity android:name=".MakeRecipe" />
         <activity android:name=".EditPantry" />
-        <activity android:name=".AddItemRecipe"></activity>
+        <activity android:name=".AddItemRecipe" />
+        <activity android:name=".MyRecipes"></activity>
     </application>
 
 </manifest>

@@ -6,4 +6,10 @@
         <item>Quantity</item>
         <item>Date</item>
     </string-array>
+    <string-array name="myRecipesSpinner">
+        <item>Sort</item>
+        <item>Price</item>
+        <item>Quantity</item>
+        <item>Date</item>
+    </string-array>
 </resources>

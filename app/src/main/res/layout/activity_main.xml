@@ -57,16 +57,14 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-<!-- consider including edit function in view pantry
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Pantry"
+        android:text="My Recipes"
         android:id="@+id/edit_pantry"
         android:layout_below="@+id/make_recipe"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="50dp"
         android:background="#ffffcc"
-        android:onClick="goToEditPantry"/>
-        -->
+        android:onClick="goToMyRecipes"/>
 </RelativeLayout>
