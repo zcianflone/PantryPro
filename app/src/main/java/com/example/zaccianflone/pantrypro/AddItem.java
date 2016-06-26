@@ -37,8 +37,13 @@ public class AddItem extends AppCompatActivity {
         EditText quantity = (EditText) findViewById(R.id.editText8);
         EditText unit = (EditText) findViewById(R.id.editText9);
 
-        Firebase ref = new Firebase("https://fiery-inferno-4832.firebaseio.com");
-        ref.child("pantry").setValue(name.getText().toString());
+        Firebase ref=new Firebase ("https://fiery-inferno-4832.firebaseio.com");
+        ref.child("pantry").child(name.getText().toString()).child("name").setValue(name.getText().toString());
+        ref.child("pantry").child(name.getText().toString()).child("expdate").setValue(expdate.getText().toString());
+        ref.child("pantry").child(name.getText().toString()).child("quantity").setValue(quantity.getText().toString());
+        ref.child("pantry").child(name.getText().toString()).child("unit").setValue(unit.getText().toString());
+
+        Log.i("Firebase New Item Loc", "pantry>"+name.getText().toString()+">"+"name>"+name.getText().toString());
 
         // Display toast message at bottom of screen when an item has been added
         Context context = getApplicationContext();

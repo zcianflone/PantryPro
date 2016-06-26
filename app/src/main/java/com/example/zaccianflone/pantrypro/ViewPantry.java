@@ -3,9 +3,16 @@ package com.example.zaccianflone.pantrypro;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class ViewPantry extends AppCompatActivity {
 
@@ -20,6 +27,32 @@ public class ViewPantry extends AppCompatActivity {
                 R.array.viewPantrySpinner, android.R.layout.simple_spinner_item);
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+        Firebase ref = new Firebase("https://fiery-inferno-4832.firebaseio.com").child("pantry");
+
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot parent) {
+
+                String newTextView="Our Pantry Items:\n";
+
+                for(DataSnapshot child : parent.getChildren())
+                {
+                    newTextView+=child.child("name").getValue();
+                    newTextView+="\n";
+                    Log.i("Firebase Snapshot Name", child.child("name").getValue().toString());
+                }
+
+                final TextView textViewToChange = (TextView) findViewById(R.id.textView5);
+                textViewToChange.setText(newTextView);
+            }
+
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.e("Firebase Listen Error", "Unable to Read from Firebase");
+            }
+
+        });
     }
 
     // When the user clicks "Back" go to MainActivity
@@ -27,6 +60,5 @@ public class ViewPantry extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-
 }
+
