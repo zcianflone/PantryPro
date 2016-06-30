@@ -13,7 +13,10 @@ import com.firebase.client.Firebase;
 
 import java.io.IOException;
 
-
+/**
+ * @author Kylor
+ * @version 6/29/2016
+ */
 public class AddItem extends AppCompatActivity {
 
     private static final String TAG = "AddItem";
