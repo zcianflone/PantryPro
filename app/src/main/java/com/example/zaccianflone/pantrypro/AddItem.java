@@ -14,6 +14,8 @@ import com.firebase.client.Firebase;
 import java.io.IOException;
 
 /**
+ * Adds an Item to the pantry
+ *
  * @author Kylor
  * @version 6/29/2016
  */

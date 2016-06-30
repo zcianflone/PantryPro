@@ -5,6 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * Takes user items to form a recipe
+ *
+ * @author kylor
+ * @version 6/29/2016
+ */
 public class MakeRecipe extends AppCompatActivity {
 
     @Override
