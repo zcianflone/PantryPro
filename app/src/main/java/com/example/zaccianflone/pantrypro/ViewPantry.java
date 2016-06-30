@@ -55,7 +55,10 @@ public class ViewPantry extends AppCompatActivity {
         });
     }
 
-    // When the user clicks "Back" go to MainActivity
+    /**
+     * When the user clicks back go to Main Activity
+     * @param view
+     */
     public void goBack(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

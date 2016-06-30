@@ -22,7 +22,10 @@ public class MyRecipes extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
-    // When the user clicks back go to Main Activity
+    /**
+     * When the user clicks back go to Main Activity
+     * @param view
+     */
     public void goBack(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -13,7 +13,10 @@ public class AddItemRecipe extends AppCompatActivity {
         setContentView(R.layout.activity_add_item_recipe);
     }
 
-    // When the user clicks back go to Main Activity
+    /**
+     * When the user clicks back go to Main Activity
+     * @param view
+     */
     public void goBack(View view) {
         Intent intent = new Intent(this, MakeRecipe.class);
         startActivity(intent);

@@ -24,12 +24,19 @@ public class AddItem extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
     }
 
-        // When the user clicks back go to Main Activity
+    /**
+     * When the user clicks back go to Main Activity
+     * @param view
+     */
     public void goBack(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * When the user clicks add item, add form to firebase
+     * @param view
+     */
     public void addItem (View view) {
 
         EditText name = (EditText) findViewById(R.id.editText6);
