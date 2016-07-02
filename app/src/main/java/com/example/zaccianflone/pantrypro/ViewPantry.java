@@ -41,7 +41,6 @@ public class ViewPantry extends AppCompatActivity {
                 {
                     newTextView+=child.child("name").getValue();
                     newTextView+="\n";
-                    Log.i("Firebase Snapshot Name", child.child("name").getValue().toString());
                 }
 
                 final TextView textViewToChange = (TextView) findViewById(R.id.textView5);
@@ -49,7 +48,7 @@ public class ViewPantry extends AppCompatActivity {
             }
 
             public void onCancelled(FirebaseError firebaseError) {
-                Log.e("Firebase Listen Error", "Unable to Read from Firebase");
+
             }
 
         });
