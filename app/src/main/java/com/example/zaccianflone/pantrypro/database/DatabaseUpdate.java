@@ -13,13 +13,18 @@ import java.util.List;
  */
 public class DatabaseUpdate {
 
-    // non-default constructor for creating a new recipe with items
-    public DatabaseUpdate(String name, String description, List<String> items) {
+    private Firebase ref = new Firebase(Constants.FIREBASE_SAVE);
+    private Adding adding = new Adding();
+
+
+    // creating a new recipe with items or a grocery list with items
+    public DatabaseUpdate(String name, String description, HashMap<String, Object> ingredients) {
         adding.setName(name);
         adding.setDescription(description);
-        adding.setItemList(items);
+        adding.setAllItems(ingredients);
     }
 
+    // creating a new item in a pantry
     public DatabaseUpdate(String name, String expire, int quantity, String unit) {
         adding.setName(name);
         adding.setExpdate(expire);
@@ -27,32 +32,40 @@ public class DatabaseUpdate {
         adding.setUnit(unit);
     }
 
-    private Firebase ref;
-    private Adding adding = new Adding();
+
 
     //Creates a new item in the pantry
     public void createNewItem() {
-        ref = new Firebase(Constants.FIREBASE_URL).child("Items In Pantry");
-
-        HashMap <String, Object> itemFacts = new HashMap<>();
-        itemFacts.put("Unit", adding.getUnit());
-        itemFacts.put("Quantity", adding.getQuantity());
-        itemFacts.put("Expires", adding.getExpdate());
-
-        HashMap <String, Object> item = new HashMap<>();
-        item.put(adding.getName(), itemFacts);
-        ref.updateChildren(item);
-
+        Firebase itemRef = ref.child("Items");
+        Firebase itemName = itemRef.child(adding.getName());
+        itemName.child("Unit").setValue(adding.getUnit());
+        itemName.child("Quantity").setValue(adding.getQuantity());
+        itemName.child("Expires").setValue(adding.getExpdate());
     }
 
-    // Ben is currently working on this one
+
     public void createNewRecipe() {
-        ref = new Firebase(Constants.FIREBASE_URL).child("Recipes");
-        HashMap<String, Object> recipeFacts = new HashMap<>();
+        Firebase recipeRef = ref.child("Recipes");
+        Firebase recipeName = recipeRef.child(adding.getName());
+        recipeName.child("Ingredients").updateChildren(adding.getAllItems());
+        recipeName.child("Description").setValue(adding.getDescription());
 
     }
 
+    public void createNewGroceryList() {
+        Firebase groceryRef = ref.child("Grocery Lists");
+        Firebase listName = groceryRef.child(adding.getName());
+        listName.child("Items").updateChildren(adding.getAllItems());
+        listName.child("Description").setValue(adding.getDescription());
+    }
 
+    //update items in a specific recipe
+    public void updateRecipe() {}
 
+    //update items in the pantry
+    public void updateItem() {}
+
+    //update items in a specific grocery list
+    public void updateGroceryList() {}
 
 }

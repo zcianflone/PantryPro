@@ -1,5 +1,6 @@
 package com.example.zaccianflone.pantrypro.database;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,8 @@ public class Adding {
     private String unit;
     private String description;
     private String item;
-    public List<String> itemList;
+    private HashMap<String, Object> ingredients;
+
 
     public void setRoot(String type) {
         this.root = type;
@@ -59,7 +61,12 @@ public class Adding {
     public void setItem(String item) {
         this.item = item;
     }
-    public void setItemList(List<String> itemList) {
-        this.itemList = itemList;
+    public void setAllItems(HashMap<String, Object> ingredients) {
+        this.ingredients = ingredients;
     }
+    public HashMap<String, Object> getAllItems() {
+        return ingredients;
+    }
+
+
 }
