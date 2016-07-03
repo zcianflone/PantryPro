@@ -1,24 +1,27 @@
 package com.example.zaccianflone.pantrypro.database;
 
+import java.util.List;
+
 /**
  * Created by Ben on 7/2/2016.
  *
  * This will handle the adding items, recipes, and grocery lists
  */
 public class Adding {
-    private String type;
+    private String root;
     private String name;
     private String expdate;
     private int quantity;
     private String unit;
     private String description;
     private String item;
+    public List<String> itemList;
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRoot(String type) {
+        this.root = type;
     }
-    public String getType() {
-        return type;
+    public String getRoot() {
+        return root;
     }
     public String getName() {
         return name;
@@ -41,7 +44,7 @@ public class Adding {
     public String getUnit() {
         return unit;
     }
-    public  void setUnit(String unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
     public String getDescription() {
@@ -55,5 +58,8 @@ public class Adding {
     }
     public void setItem(String item) {
         this.item = item;
+    }
+    public void setItemList(List<String> itemList) {
+        this.itemList = itemList;
     }
 }
