@@ -70,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * When the user clicks "Make Recipe" go to Recipe Name page
+     * @param view default parameter
+     */
+    public void goToRecipeName(View view) {
+        Intent intent = new Intent(this, RecipeName.class);
+        startActivity(intent);
+    }
+
 }
 
 

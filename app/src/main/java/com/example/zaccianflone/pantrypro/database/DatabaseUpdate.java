@@ -60,7 +60,12 @@ public class DatabaseUpdate {
     }
 
     //update items in a specific recipe
-    public void updateRecipe() {}
+    public void updateRecipe() {
+        Firebase recipeRef = ref.child("Recipes");
+        Firebase recipeName = recipeRef.child(adding.getName());
+        recipeName.child("Ingredients").updateChildren(adding.getAllItems());
+        recipeName.child("Description").setValue(adding.getDescription());
+    }
 
     //update items in the pantry
     public void updateItem() {}
