@@ -41,4 +41,14 @@ public class AddItemRecipe extends AppCompatActivity {
         Intent intent = new Intent(this, MakeRecipe.class);
         startActivity(intent);
     }
+
+
+    public void addItem(View view) {
+
+        boolean addToast = false;
+
+        EditText name = (EditText) findViewById(R.id.editText6);
+        EditText quantity = (EditText) findViewById(R.id.editText8);
+        EditText unit = (EditText) findViewById(R.id.editText9);
+    }
 }
