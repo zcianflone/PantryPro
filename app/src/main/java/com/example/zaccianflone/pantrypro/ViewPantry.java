@@ -38,8 +38,6 @@ public class ViewPantry extends AppCompatActivity {
                         textView.setText(s);
                     }
                 };
-        //Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
-
         mListView.setAdapter(fbAdapter);
 
     }
