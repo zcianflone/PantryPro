@@ -32,10 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/textView5"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/back" />
+        android:layout_above="@+id/back"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="200dp"
@@ -44,6 +46,9 @@
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         android:layout_below="@+id/textView5"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/listView"
+        android:layout_alignEnd="@+id/listView" />
+
+
+
 </RelativeLayout>

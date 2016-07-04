@@ -1,18 +1,16 @@
 package com.example.zaccianflone.pantrypro;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.firebase.ui.FirebaseListAdapter;
 
 public class ViewPantry extends AppCompatActivity {
 
@@ -28,30 +26,22 @@ public class ViewPantry extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        Firebase ref = new Firebase("https://fiery-inferno-4832.firebaseio.com").child("pantry");
+        ListView mListView = (ListView) findViewById(R.id.listView);
 
-        ref.addValueEventListener(new ValueEventListener() {
+        Firebase ref = new Firebase("https://pantrypro-a7109.firebaseio.com/message");
 
-            @Override
-            public void onDataChange(DataSnapshot parent) {
+        FirebaseListAdapter<String> fbAdapter =
+                new FirebaseListAdapter<String>(this, String.class, android.R.layout.simple_list_item_1, ref) {
+                    @Override
+                    protected void populateView(View view, String s, int position) {
+                        TextView textView = (TextView)view.findViewById(android.R.id.text1);
+                        textView.setText(s);
+                    }
+                };
+        //Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
 
-                String newTextView="Our Pantry Items:\n";
+        mListView.setAdapter(fbAdapter);
 
-                for(DataSnapshot child : parent.getChildren())
-                {
-                    newTextView+=child.child("name").getValue();
-                    newTextView+="\n";
-                }
-
-                final TextView textViewToChange = (TextView) findViewById(R.id.textView5);
-                textViewToChange.setText(newTextView);
-            }
-
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-
-        });
     }
 
     /**
