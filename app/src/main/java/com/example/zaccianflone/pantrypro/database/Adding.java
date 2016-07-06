@@ -9,7 +9,6 @@ import java.util.List;
  * This will handle the adding items, recipes, and grocery lists
  */
 public class Adding {
-    private String root;
     private String name;
     private String expdate;
     private int quantity;
@@ -19,12 +18,6 @@ public class Adding {
     private HashMap<String, Object> ingredients;
 
 
-    public void setRoot(String type) {
-        this.root = type;
-    }
-    public String getRoot() {
-        return root;
-    }
     public String getName() {
         return name;
     }

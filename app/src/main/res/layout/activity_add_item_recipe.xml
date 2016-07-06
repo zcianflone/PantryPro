@@ -101,4 +101,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:id="@+id/finishing"
+        android:layout_alignBottom="@+id/back"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="finish" />
+
 </RelativeLayout>

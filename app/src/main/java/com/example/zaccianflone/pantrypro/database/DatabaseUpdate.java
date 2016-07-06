@@ -13,15 +13,14 @@ import java.util.List;
  */
 public class DatabaseUpdate {
 
-    private Firebase ref = new Firebase(Constants.FIREBASE_SAVE);
+    private Firebase ref = new Firebase(Constants.FIREBASE_URL);
     private Adding adding = new Adding();
 
 
     // creating a new recipe with items or a grocery list with items
-    public DatabaseUpdate(String name, String description, HashMap<String, Object> ingredients) {
+    public DatabaseUpdate(String name, String description) {
         adding.setName(name);
         adding.setDescription(description);
-        adding.setAllItems(ingredients);
     }
 
     // creating a new item in a pantry
@@ -47,8 +46,8 @@ public class DatabaseUpdate {
     public void createNewRecipe() {
         Firebase recipeRef = ref.child("Recipes");
         Firebase recipeName = recipeRef.child(adding.getName());
-        recipeName.child("Ingredients").updateChildren(adding.getAllItems());
         recipeName.child("Description").setValue(adding.getDescription());
+        //recipeName.child("Ingredients").updateChildren(adding.getAllItems());
 
     }
 
@@ -61,10 +60,10 @@ public class DatabaseUpdate {
 
     //update items in a specific recipe
     public void updateRecipe() {
-        Firebase recipeRef = ref.child("Recipes");
-        Firebase recipeName = recipeRef.child(adding.getName());
-        recipeName.child("Ingredients").updateChildren(adding.getAllItems());
-        recipeName.child("Description").setValue(adding.getDescription());
+//        Firebase recipeRef = ref.child("Recipes");
+//        Firebase recipeName = recipeRef.child(adding.getName());
+//        recipeName.child("Ingredients").updateChildren(adding.getAllItems());
+//        recipeName.child("Description").setValue(adding.getDescription());
     }
 
     //update items in the pantry
