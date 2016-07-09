@@ -22,6 +22,7 @@
         <activity android:name=".MakeRecipe" />
         <activity android:name=".EditPantry" />
         <activity android:name=".AddItemRecipe" />
+        <activity android:name=".MyRecipes" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
