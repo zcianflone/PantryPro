@@ -47,18 +47,18 @@ public class ViewPantry extends AppCompatActivity {
        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PantryItem selectedItem = fbAdapter.getItem(position);
 
-                                    PantryItem selectedItem = fbAdapter.getItem(position);
-                               if (selectedItem != null) {
-                                      //Intent intent = new Intent(this, PantryListDetailsActivity.class);
-                                       /* Get the list ID using the adapter's get ref method to get the Firebase
+                if (selectedItem != null) {
+                    Intent intent = new Intent(ViewPantry.this, PantryListDetails.class);
+                    /* Get the list ID using the adapter's get ref method to get the Firebase
                      * ref and then grab the key.
                      */
-                                               String listId = fbAdapter.getRef(position).getKey();
-                                  //intent.putExtra(Constants.KEY_LIST_ID, listId);
-                                   /* Starts an active showing the details for the selected list */
-                                    //         startActivity(intent);
-                               }
+                    String listId = fbAdapter.getRef(position).getKey();
+                    intent.putExtra(Constants.KEY_LIST_ID, listId);
+                    /* Starts an active showing the details for the selected list */
+                    startActivity(intent);
+                }
             }
         });
 
