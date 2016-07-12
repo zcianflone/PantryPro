@@ -1,16 +1,29 @@
 package com.example.zaccianflone.pantrypro;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.zaccianflone.pantrypro.model.PantryItem;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class PantryListDetails extends AppCompatActivity {
 
     private String mListId;
+    private PantryItem mPantryItem;
+    ArrayList<String> PantryList = new ArrayList<String>();
+
+
+
 
 
     @Override
@@ -23,12 +36,11 @@ public class PantryListDetails extends AppCompatActivity {
          /* Get the push ID from the extra passed by View Pantry */
         Intent intent = this.getIntent();
         mListId = intent.getStringExtra(Constants.KEY_LIST_ID);
+
+        Log.d("PantryListDetails", mListId);
         if (mListId == null) {
             /* No point in continuing without a valid ID. */
-            finish();
             return;
-
-
         }
 
         /**
@@ -36,15 +48,42 @@ public class PantryListDetails extends AppCompatActivity {
          */
         Firebase ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry").child(mListId);
 
-        /**
-         * Setup the adapter
 
-        ActiveListItemAdapter mActiveListItemAdapter = new ActiveListItemAdapter(this, ShoppingListItem.class,
-                R.layout.single_active_list_item, listItemsRef.orderByChild(Constants.FIREBASE_PROPERTY_BOUGHT_BY),
-                mListId, mEncodedEmail);
-        // Create ActiveListItemAdapter and set to listView
-        mListView.setAdapter(mActiveListItemAdapter);
-        */
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                /**
+                 * Saving the most recent version of current shopping list into mShoppingList if present
+                 * finish() the activity if the list is null (list was removed or unshared by it's owner
+                 * while current user is in the list details activity)
+                 */
+                PantryItem pantryItem = snapshot.getValue(PantryItem.class);
+
+                mPantryItem = pantryItem;
+
+
+                Log.d("Hi", mPantryItem.getName());
+                PantryList.add("Name: " + mPantryItem.getName());
+                PantryList.add("Quantity: " + mPantryItem.getQuantity());
+                PantryList.add("Expiration Date: " + mPantryItem.getExpDate());
+                PantryList.add("Unit Type: " + mPantryItem.getUnitType());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                finish();
+                return;
+            }
+        });
+
+
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+                                                                    android.R.layout.simple_list_item_1,
+                                                                    PantryList);
+
+       mListView.setAdapter(arrayAdapter);
     }
 
     /**

@@ -39,7 +39,7 @@ public class ViewPantry extends AppCompatActivity {
                         TextView textView = (TextView)view.findViewById(android.R.id.text1);
 
 
-                        textView.setText(pantryItem.getName() + " " + pantryItem.getQuantity());
+                        textView.setText(pantryItem.getName());
                     }
                 };
         mListView.setAdapter(fbAdapter);
