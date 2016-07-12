@@ -21,6 +21,7 @@ public class PantryListDetails extends AppCompatActivity {
     private String mListId;
     private PantryItem mPantryItem;
     ArrayList<String> PantryList = new ArrayList<String>();
+    Firebase ref;
 
 
 
@@ -46,7 +47,7 @@ public class PantryListDetails extends AppCompatActivity {
         /**
          * Create Firebase reference
          */
-        Firebase ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry").child(mListId);
+       ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry").child(mListId);
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -59,6 +60,15 @@ public class PantryListDetails extends AppCompatActivity {
                  * while current user is in the list details activity)
                  */
                 PantryItem pantryItem = snapshot.getValue(PantryItem.class);
+
+                if (pantryItem == null) {
+                    finish();
+                    /**
+                     * Make sure to call return, otherwise the rest of the method will execute,
+                     * even after calling finish.
+                     */
+                    return;
+                }
 
                 mPantryItem = pantryItem;
 
@@ -84,6 +94,13 @@ public class PantryListDetails extends AppCompatActivity {
                                                                     PantryList);
 
        mListView.setAdapter(arrayAdapter);
+
+    }
+
+    public void remove(View view){
+        ref.removeValue();
+        Intent intent = new Intent(this, ViewPantry.class);
+        startActivity(intent);
     }
 
     /**
