@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.zaccianflone.pantrypro.model.PantryItem;
 import com.firebase.client.DataSnapshot;
@@ -14,25 +14,20 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import java.util.ArrayList;
-
-public class PantryListDetails extends AppCompatActivity {
+public class EditPantryItem extends AppCompatActivity {
 
     private String mListId;
     private PantryItem mPantryItem;
-    ArrayList<String> PantryList = new ArrayList<String>();
     Firebase ref;
-
-
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantry_list_details);
+        setContentView(R.layout.activity_edit_pantry_item);
 
-        ListView mListView = (ListView) findViewById(R.id.listView);
+
 
          /* Get the push ID from the extra passed by View Pantry */
         Intent intent = this.getIntent();
@@ -47,18 +42,18 @@ public class PantryListDetails extends AppCompatActivity {
         /**
          * Create Firebase reference
          */
-       ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry").child(mListId);
+        ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry").child(mListId);
 
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                /**
-                 * Saving the most recent version of current shopping list into mShoppingList if present
-                 * finish() the activity if the list is null (list was removed or unshared by it's owner
-                 * while current user is in the list details activity)
-                 */
+                EditText mName = (EditText) findViewById(R.id.editName);
+                EditText mExpDate = (EditText) findViewById(R.id.editExp);
+                EditText mQuantity = (EditText) findViewById(R.id.editQuantity);
+                EditText mUnit = (EditText) findViewById(R.id.editUnit);
+
                 PantryItem pantryItem = snapshot.getValue(PantryItem.class);
 
                 if (pantryItem == null) {
@@ -73,11 +68,10 @@ public class PantryListDetails extends AppCompatActivity {
                 mPantryItem = pantryItem;
 
 
-                Log.d("Hi", mPantryItem.getName());
-                PantryList.add("Name: " + mPantryItem.getName());
-                PantryList.add("Quantity: " + mPantryItem.getQuantity());
-                PantryList.add("Expiration Date: " + mPantryItem.getExpDate());
-                PantryList.add("Unit Type: " + mPantryItem.getUnitType());
+                mName.setText(mPantryItem.getName(), TextView.BufferType.EDITABLE);
+                mExpDate.setText(mPantryItem.getExpDate(), TextView.BufferType.EDITABLE);
+                mQuantity.setText(mPantryItem.getQuantity(), TextView.BufferType.EDITABLE);
+                mUnit.setText(mPantryItem.getUnitType(), TextView.BufferType.EDITABLE);
             }
 
             @Override
@@ -89,33 +83,38 @@ public class PantryListDetails extends AppCompatActivity {
 
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                                                                    android.R.layout.simple_list_item_1,
-                                                                    PantryList);
 
-       mListView.setAdapter(arrayAdapter);
 
     }
 
-    public void remove(View view){
-        ref.removeValue();
-        Intent intent = new Intent(this, ViewPantry.class);
+    public void onSubmit(View view){
+        EditText mName = (EditText) findViewById(R.id.editName);
+        EditText mExpDate = (EditText) findViewById(R.id.editExp);
+        EditText mQuantity = (EditText) findViewById(R.id.editQuantity);
+        EditText mUnit = (EditText) findViewById(R.id.editUnit);
+
+        String newName = mName.getText().toString();
+        String newExpDate = mExpDate.getText().toString();
+        String newQuantity = mQuantity.getText().toString();
+        String newUnit = mUnit.getText().toString();
+
+        PantryItem pantryItem= new PantryItem(newName, newExpDate, newQuantity, newUnit);
+
+        ref.setValue(pantryItem);
+
+        Intent intent = new Intent(this, PantryListDetails.class);
+        intent.putExtra(Constants.KEY_LIST_ID, mListId);
+
         startActivity(intent);
+
     }
 
-    public void goEdit(View view){
-        Intent intent = new Intent(this, EditPantryItem.class);
+    public void goBack(View view) {
+        Intent intent = new Intent(this, PantryListDetails.class);
         intent.putExtra(Constants.KEY_LIST_ID, mListId);
 
         startActivity(intent);
     }
 
-    /**
-     * When the user clicks back go to Main Activity
-     * @param view
-     */
-    public void goBack(View view) {
-        Intent intent = new Intent(this, ViewPantry.class);
-        startActivity(intent);
-    }
+
 }

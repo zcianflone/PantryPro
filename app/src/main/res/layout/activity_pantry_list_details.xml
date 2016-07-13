@@ -47,7 +47,8 @@
         android:id="@+id/button4"
         android:layout_alignLeft="@+id/textView5"
         android:layout_alignStart="@+id/textView5"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:onClick="goEdit"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
