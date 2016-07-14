@@ -14,6 +14,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.text.ParseException;
+
 public class EditPantryItem extends AppCompatActivity {
 
     private String mListId;
@@ -69,7 +71,7 @@ public class EditPantryItem extends AppCompatActivity {
 
 
                 mName.setText(mPantryItem.getName(), TextView.BufferType.EDITABLE);
-                mExpDate.setText(mPantryItem.getExpDate(), TextView.BufferType.EDITABLE);
+                mExpDate.setText(mPantryItem.getTextExpDate(), TextView.BufferType.EDITABLE);
                 mQuantity.setText(mPantryItem.getQuantity(), TextView.BufferType.EDITABLE);
                 mUnit.setText(mPantryItem.getUnitType(), TextView.BufferType.EDITABLE);
             }
@@ -98,7 +100,12 @@ public class EditPantryItem extends AppCompatActivity {
         String newQuantity = mQuantity.getText().toString();
         String newUnit = mUnit.getText().toString();
 
-        PantryItem pantryItem= new PantryItem(newName, newExpDate, newQuantity, newUnit);
+        PantryItem pantryItem= null;
+        try {
+            pantryItem = new PantryItem(newName, newExpDate, newQuantity, newUnit);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         ref.setValue(pantryItem);
 

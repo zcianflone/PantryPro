@@ -120,7 +120,7 @@ public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemS
                             TextView textView = (TextView)view.findViewById(android.R.id.text1);
 
 
-                            textView.setText(pantryItem.getName() +"    Exp: "+ pantryItem.getExpDate());
+                            textView.setText(pantryItem.getName() +"      Exp: "+ pantryItem.getTextExpDate());
                         }
                     };
         }

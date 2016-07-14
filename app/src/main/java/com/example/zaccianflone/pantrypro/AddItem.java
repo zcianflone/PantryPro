@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.example.zaccianflone.pantrypro.model.PantryItem;
 import com.firebase.client.Firebase;
 
+import java.text.ParseException;
+
 /**
  * Adds an Item to the pantry
  *
@@ -86,7 +88,12 @@ public class AddItem extends AppCompatActivity {
                 //ref.child("pantry").child(name.getText().toString()).child("unit").setValue(unit.getText().toString());
             }*/
 
-            PantryItem pantryItem = new PantryItem(name, expDate, quantity, unit);
+            PantryItem pantryItem = null;
+            try {
+                pantryItem = new PantryItem(name, expDate, quantity, unit);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             pushRef.setValue(pantryItem);
 
