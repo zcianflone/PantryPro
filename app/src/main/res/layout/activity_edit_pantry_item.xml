@@ -26,7 +26,9 @@
         android:id="@+id/editName"
         android:layout_below="@+id/name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/expDate"
+        android:layout_alignEnd="@+id/expDate" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,7 +46,9 @@
         android:id="@+id/editQuantity"
         android:layout_below="@+id/quantity"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/unit"
+        android:layout_alignEnd="@+id/unit" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,7 +66,9 @@
         android:id="@+id/editExp"
         android:layout_below="@+id/expDate"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/expDate"
+        android:layout_alignEnd="@+id/expDate" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +86,9 @@
         android:id="@+id/editUnit"
         android:layout_below="@+id/unit"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editExp"
+        android:layout_alignEnd="@+id/editExp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -104,5 +112,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="onSubmit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Group"
+        android:id="@+id/group"
+        android:layout_below="@+id/editUnit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editGroup"
+        android:layout_below="@+id/group"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editUnit"
+        android:layout_alignEnd="@+id/editUnit" />
 
 </RelativeLayout>

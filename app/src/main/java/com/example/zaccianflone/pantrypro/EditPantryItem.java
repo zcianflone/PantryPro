@@ -18,9 +18,9 @@ import java.text.ParseException;
 
 public class EditPantryItem extends AppCompatActivity {
 
-    private String mListId;
+    private String mListId, oldGroup;
     private PantryItem mPantryItem;
-    Firebase ref;
+    Firebase ref, groupRef;
 
 
 
@@ -45,6 +45,7 @@ public class EditPantryItem extends AppCompatActivity {
          * Create Firebase reference
          */
         ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry").child(mListId);
+        groupRef = new Firebase("https://pantrypro-a7109.firebaseio.com/pantryGroup");
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -55,6 +56,7 @@ public class EditPantryItem extends AppCompatActivity {
                 EditText mExpDate = (EditText) findViewById(R.id.editExp);
                 EditText mQuantity = (EditText) findViewById(R.id.editQuantity);
                 EditText mUnit = (EditText) findViewById(R.id.editUnit);
+                EditText mGroup = (EditText) findViewById(R.id.editGroup);
 
                 PantryItem pantryItem = snapshot.getValue(PantryItem.class);
 
@@ -74,6 +76,9 @@ public class EditPantryItem extends AppCompatActivity {
                 mExpDate.setText(mPantryItem.getTextExpDate(), TextView.BufferType.EDITABLE);
                 mQuantity.setText(mPantryItem.getQuantity(), TextView.BufferType.EDITABLE);
                 mUnit.setText(mPantryItem.getUnitType(), TextView.BufferType.EDITABLE);
+                mGroup.setText(mPantryItem.getGroup(), TextView.BufferType.EDITABLE);
+
+                oldGroup = mPantryItem.getGroup();
             }
 
             @Override
@@ -94,20 +99,30 @@ public class EditPantryItem extends AppCompatActivity {
         EditText mExpDate = (EditText) findViewById(R.id.editExp);
         EditText mQuantity = (EditText) findViewById(R.id.editQuantity);
         EditText mUnit = (EditText) findViewById(R.id.editUnit);
+        EditText mGroup = (EditText) findViewById(R.id.editGroup);
 
         String newName = mName.getText().toString();
         String newExpDate = mExpDate.getText().toString();
         String newQuantity = mQuantity.getText().toString();
         String newUnit = mUnit.getText().toString();
+        String newGroup = mGroup.getText().toString();
 
         PantryItem pantryItem= null;
         try {
-            pantryItem = new PantryItem(newName, newExpDate, newQuantity, newUnit);
+            pantryItem = new PantryItem(newName, newExpDate, newQuantity, newUnit, newGroup);
+
+
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         ref.setValue(pantryItem);
+
+        groupRef.child(newGroup).setValue(newGroup);
+
+
+
 
         Intent intent = new Intent(this, PantryListDetails.class);
         intent.putExtra(Constants.KEY_LIST_ID, mListId);

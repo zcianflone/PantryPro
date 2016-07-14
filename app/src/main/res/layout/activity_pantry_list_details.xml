@@ -45,10 +45,9 @@
         android:layout_height="wrap_content"
         android:text="Edit Item"
         android:id="@+id/button4"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5"
+        android:onClick="goEdit"
         android:layout_alignParentBottom="true"
-        android:onClick="goEdit"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

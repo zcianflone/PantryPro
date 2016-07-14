@@ -22,6 +22,7 @@ public class PantryListDetails extends AppCompatActivity {
     private PantryItem mPantryItem;
     ArrayList<String> PantryList = new ArrayList<String>();
     Firebase ref;
+    ArrayAdapter<String> arrayAdapter;
 
 
 
@@ -76,8 +77,9 @@ public class PantryListDetails extends AppCompatActivity {
                 Log.d("Hi", mPantryItem.getName());
                 PantryList.add("Name: " + mPantryItem.getName());
                 PantryList.add("Quantity: " + mPantryItem.getQuantity());
-                PantryList.add("Expiration Date: " + mPantryItem.getExpDate());
+                PantryList.add("Expiration Date: " + mPantryItem.getTextExpDate());
                 PantryList.add("Unit Type: " + mPantryItem.getUnitType());
+                PantryList.add("Group: " + mPantryItem.getGroup());
             }
 
             @Override
@@ -89,7 +91,7 @@ public class PantryListDetails extends AppCompatActivity {
 
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+        arrayAdapter = new ArrayAdapter<String>(this,
                                                                     android.R.layout.simple_list_item_1,
                                                                     PantryList);
 
@@ -106,6 +108,7 @@ public class PantryListDetails extends AppCompatActivity {
     public void goEdit(View view){
         Intent intent = new Intent(this, EditPantryItem.class);
         intent.putExtra(Constants.KEY_LIST_ID, mListId);
+        arrayAdapter.clear();
 
         startActivity(intent);
     }

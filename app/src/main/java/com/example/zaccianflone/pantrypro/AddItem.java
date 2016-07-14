@@ -50,14 +50,17 @@ public class AddItem extends AppCompatActivity {
         EditText mExpDate = (EditText) findViewById(R.id.editText7);
         EditText mQuantity = (EditText) findViewById(R.id.editText8);
         EditText mUnit = (EditText) findViewById(R.id.editText9);
+        EditText mGroup = (EditText) findViewById(R.id.editGroup);
 
         String name = mName.getText().toString();
         String expDate = mExpDate.getText().toString();
         String quantity = mQuantity.getText().toString();
         String unit = mUnit.getText().toString();
+        String group = mGroup.getText().toString();
 
 
         Firebase pantryRef = new Firebase ("https://pantrypro-a7109.firebaseio.com/pantry");
+        Firebase groupRef = new Firebase ("https://pantrypro-a7109.firebaseio.com/pantryGroup");
         Firebase pushRef = pantryRef.push();
 
         /*
@@ -72,30 +75,22 @@ public class AddItem extends AppCompatActivity {
 
             addToast = true;
 
-           /* if (!expdate.getText().toString().matches("")){
-                //ref.child("pantry").child(name.getText().toString()).child("expdate").setValue(expdate.getText().toString());
-            }*/
-
-            if (!quantity.matches("")){
-                //ref.child("pantry").child(name.getText().toString()).child("quantity").setValue(quantity.getText().toString());
-            }
-            else //if the user doesn't specify a quantity, we default a quantity of 1
-            {
-                //ref.child("pantry").child(name.getText().toString()).child("quantity").setValue("1");
-            }
-
-            /*if (!unit.getText().toString().matches("")){
-                //ref.child("pantry").child(name.getText().toString()).child("unit").setValue(unit.getText().toString());
-            }*/
-
             PantryItem pantryItem = null;
             try {
-                pantryItem = new PantryItem(name, expDate, quantity, unit);
+                pantryItem = new PantryItem(name, expDate, quantity, unit, group);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
+            /**
+             * Adds our pantryItem object to our FireBase
+             */
             pushRef.setValue(pantryItem);
+
+            /**
+             * this won't add the group if it already exists, but that's exactly what we want: set-like behavior
+             */
+            groupRef.child(pantryItem.getGroup()).setValue(pantryItem.getGroup());
 
         }
 

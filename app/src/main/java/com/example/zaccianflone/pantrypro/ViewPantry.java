@@ -13,13 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zaccianflone.pantrypro.model.PantryItem;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseListAdapter;
+
+import java.util.ArrayList;
 
 public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     Firebase ref = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry");
+    Firebase groupRef = new Firebase("https://pantrypro-a7109.firebaseio.com/pantryGroup");
+    ArrayList<String> spinList = new ArrayList<String>();
 
     FirebaseListAdapter<PantryItem> fbAdapter;
     @Override
@@ -29,11 +36,42 @@ public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemS
         ListView mListView = (ListView) findViewById(R.id.listView);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
+        ArrayAdapter<String> spinAdapter;
+
+
+        spinList.add("Newest to Oldest");
+        spinList.add("Oldest to Newest");
+        spinList.add("Alphabetic Order");
+        spinList.add("Exp Date");
+
+        groupRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+             for(DataSnapshot child: snapshot.getChildren())
+             {
+                 spinList.add((String) child.getValue());
+                 Log.d("Inside Snap", (String) child.getValue());
+             }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                finish();
+                return;
+            }
+        });
+
+
+
+    spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinList);
+
         // Create an ArrayAdapter using the string array located in strings.xml
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.viewPantrySpinner, android.R.layout.simple_spinner_item);
+       /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.viewPantrySpinner, android.R.layout.simple_spinner_item);*/
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(spinAdapter);
         spinner.setOnItemSelectedListener(this);
 
 
@@ -84,18 +122,27 @@ public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemS
 
         Log.d("in item selected", myText.getText().toString() );
 
-        if (position == 1) {
+        if (position == 0) {
             fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref) {
+                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("invertedTime")) {
                         @Override
                         protected void populateView(View view, PantryItem pantryItem, int position) {
                             TextView textView = (TextView) view.findViewById(android.R.id.text1);
-
-
                             textView.setText(pantryItem.getName());
                         }
                     };
 
+        }
+        else if (position == 1)
+        {
+            fbAdapter =
+                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref) {
+                        @Override
+                        protected void populateView(View view, PantryItem pantryItem, int position) {
+                            TextView textView = (TextView)view.findViewById(android.R.id.text1);
+                            textView.setText(pantryItem.getName());
+                        }
+                    };
         }
         else if (position == 2)
         {
@@ -104,8 +151,6 @@ public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemS
                         @Override
                         protected void populateView(View view, PantryItem pantryItem, int position) {
                             TextView textView = (TextView)view.findViewById(android.R.id.text1);
-
-
                             textView.setText(pantryItem.getName());
                         }
                     };
@@ -124,10 +169,9 @@ public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemS
                         }
                     };
         }
-
         else{
             fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("invertedTime")) {
+                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("group").equalTo(myText.getText().toString())) {
                         @Override
                         protected void populateView(View view, PantryItem pantryItem, int position) {
                             TextView textView = (TextView)view.findViewById(android.R.id.text1);
