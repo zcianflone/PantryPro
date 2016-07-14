@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">PantryPro</string>
     <string-array name="viewPantrySpinner">
-        <item>Sort</item>
-        <item>Price</item>
-        <item>Quantity</item>
-        <item>Date</item>
+        <item>Newest to Oldest</item>
+        <item>Oldest to Newest</item>
+        <item>Alphabetic Order</item>
+        <item>Exp Date</item>
     </string-array>
     <string-array name="myRecipesSpinner">
         <item>Sort</item>
