@@ -28,7 +28,6 @@ public class AddItem extends AppCompatActivity {
 
     //private static final String TAG = "AddItem";
     private EditText mName, mExpDate, mQuantity, mUnit;
-    private String name, expDate, quantity, unit;
 
 
     @Override
@@ -49,10 +48,10 @@ public class AddItem extends AppCompatActivity {
         mQuantity = (EditText) findViewById(R.id.editText8);
         mUnit = (EditText) findViewById(R.id.editText9);
 
-        name = mName.getText().toString();
-        expDate = mExpDate.getText().toString();
-        quantity = mQuantity.getText().toString();
-        unit = mUnit.getText().toString();
+//        name = mName.getText().toString();
+//        expDate = mExpDate.getText().toString();
+//        quantity = mQuantity.getText().toString();
+//        unit = mUnit.getText().toString();
 
         if (!checkFields()) {
             return;
@@ -81,7 +80,9 @@ public class AddItem extends AppCompatActivity {
             Toast.makeText(this, "No value for the Quantity", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return true;
+        else {
+            return true;
+        }
     }
 
     private void clearFields() {
@@ -93,13 +94,13 @@ public class AddItem extends AppCompatActivity {
 
     public void toast(View view) {
         Context context = getApplicationContext();
-            CharSequence text = "Item added to pantry";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+        CharSequence text = "Item added to pantry";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
-    public void addItem () {
+    public void addItem() {
 
         //boolean addToast = false;
 
@@ -108,16 +109,16 @@ public class AddItem extends AppCompatActivity {
 //        EditText mQuantity = (EditText) findViewById(R.id.editText8);
 //        EditText mUnit = (EditText) findViewById(R.id.editText9);
 
-        /*String*/ name = mName.getText().toString();
-        /*String*/ expDate = mExpDate.getText().toString();
-        /*String*/ quantity = mQuantity.getText().toString();
-        /*String*/ unit = mUnit.getText().toString();
+//        /*String*/ name = mName.getText().toString();
+//        /*String*/ expDate = mExpDate.getText().toString();
+//        /*String*/ quantity = mQuantity.getText().toString();
+//        /*String*/ unit = mUnit.getText().toString();
 
         List<String> list = new ArrayList<>();
-        list.add(name);
-        list.add(expDate);
-        list.add(quantity);
-        list.add(unit);
+        list.add(mName.getText().toString());
+        list.add(mExpDate.getText().toString());
+        list.add(mQuantity.getText().toString());
+        list.add(mUnit.getText().toString());
 
         Pantry item = new Item();
         item.addOrEdit(list);

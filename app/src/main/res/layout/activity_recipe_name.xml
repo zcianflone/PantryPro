@@ -24,22 +24,22 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Please enter the name of your recipe:"
         android:id="@+id/textView12"
+        android:layout_marginTop="47dp"
+        android:textAlignment="center"
         android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/editText11"
+        android:layout_marginTop="66dp"
+        android:hint="Name"
         android:layout_below="@+id/textView12"
-        android:layout_alignRight="@+id/textView12"
-        android:layout_alignEnd="@+id/textView12"
-        android:layout_marginTop="65dp" />
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
 
     <Button
         android:layout_width="wrap_content"
@@ -47,7 +47,8 @@
         android:text="   Submit   "
         android:id="@+id/button5"
         android:onClick="goToMakeRecipe"
-        android:layout_below="@+id/editText11"
+        android:layout_alignBaseline="@+id/back"
+        android:layout_alignBottom="@+id/back"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3" />
 
@@ -60,4 +61,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="goBack" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:width="10dp"
+        android:hint="Directions"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/editText11"
+        android:layout_alignLeft="@+id/editText11"
+        android:layout_alignStart="@+id/editText11"
+        android:layout_alignRight="@+id/editText11"
+        android:layout_alignEnd="@+id/editText11"
+        android:autoText="false"
+        android:textAlignment="center" />
 </RelativeLayout>

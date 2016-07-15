@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by Ben on 7/11/2016.
  */
-public class Create {
+public class Create extends DatabaseUpdate{
     //private Firebase firebase;
 
     public void child(String type) {
