@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view default parameter
      */
     public void goToMakeRecipe(View view) {
-        Intent intent = new Intent(this, MakeRecipe.class);
+        Intent intent = new Intent(this, RecipeName.class);
         startActivity(intent);
     }
 
