@@ -13,6 +13,7 @@ import android.widget.Toast;
 import android.util.Pair;
 
 import com.example.zaccianflone.pantrypro.database.Adding;
+import com.example.zaccianflone.pantrypro.database.Create;
 import com.example.zaccianflone.pantrypro.database.DatabaseUpdate;
 import com.firebase.client.Firebase;
 
@@ -30,7 +31,6 @@ public class AddItemRecipe extends AppCompatActivity {
 
     private static String recipeName;
     private static String info;
-    private static DatabaseUpdate data;
     private static Firebase ref = new Firebase(Constants.FIREBASE_URL);
     //private HashMap<String, Object> itemList = new HashMap<>();
 
@@ -39,11 +39,9 @@ public class AddItemRecipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item_recipe);
 
-        Intent intent = getIntent();
-        recipeName = intent.getStringExtra("name");
-        info = intent.getStringExtra("info");
-
-        data = new DatabaseUpdate(recipeName, info);
+        //Intent intent = getIntent();
+        //recipeName = intent.getStringExtra("name");
+        //info = intent.getStringExtra("info");
 
 
     }
@@ -74,15 +72,12 @@ public class AddItemRecipe extends AppCompatActivity {
             EditText unit = (EditText) findViewById(R.id.editText9);
             String unitType = unit.getText().toString();
 
-            ref.child("Recipes").child(recipeName).child(itemName).child("Quantity").setValue(amount);
-            ref.child("Recipes").child(recipeName).child(itemName).child("Unit").setValue(unitType);
+            //Create create = new Create();
+            //create.execute();
 
+            //ref.child("Recipes").child(recipeName).child(itemName).child("Quantity").setValue(amount);
+            //ref.child("Recipes").child(recipeName).child(itemName).child("Unit").setValue(unitType);
 
-            //HashMap<String, Object> hashMap = new HashMap<>();
-            //hashMap.put("Unit", unitType);
-            //hashMap.put("Quantity", amount);
-
-            //itemList.put(itemName, hashMap);
 
         }
 
@@ -97,9 +92,6 @@ public class AddItemRecipe extends AppCompatActivity {
     public void finish(View view) {
         //DatabaseUpdate fireBase = new DatabaseUpdate(recipeName, info, itemList);
         //fireBase.createNewRecipe();
-
-        recipeName = null;
-        info = null;
 
 
         Intent intent = new Intent(this, MakeRecipe.class);

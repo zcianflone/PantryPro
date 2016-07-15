@@ -45,7 +45,7 @@
         android:background="#ffffcc"
         android:textColor="@android:color/black"
         android:layout_marginTop="50dp"
-        android:onClick="goToMakeRecipe"/>
+        android:onClick="goToRecipeName"/>
 
     <TextView
         android:layout_width="wrap_content"
