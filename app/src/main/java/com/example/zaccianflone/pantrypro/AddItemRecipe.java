@@ -31,8 +31,8 @@ public class AddItemRecipe extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private static String name, directions;
-    private static EditText ingredient, quantity, units;
+    private String name, directions;
+    private EditText ingredient, quantity, units;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
