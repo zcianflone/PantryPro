@@ -17,13 +17,17 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RecipeDetail extends AppCompatActivity {
+public class GenerateList extends AppCompatActivity {
 
+    // Variables used to pull the recipe info
     private String mListId;
     private Recipe mRecipe;
     ArrayList<String> RecipeList = new ArrayList<String>();
     Firebase ref;
     ArrayAdapter<String> arrayAdapter;
+
+    // Variables used to pull the pantry
+    Firebase refP = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry");
 
 
 
@@ -74,6 +78,10 @@ public class RecipeDetail extends AppCompatActivity {
 
                 Log.d("Hi", mRecipe.getName());
                 RecipeList = (mRecipe.getIngredients());
+
+                generateList();
+
+
             }
 
             @Override
@@ -83,8 +91,6 @@ public class RecipeDetail extends AppCompatActivity {
             }
         });
 
-
-
         arrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 RecipeList);
@@ -93,26 +99,10 @@ public class RecipeDetail extends AppCompatActivity {
 
     }
 
-    public void remove(View view){
-        ref.removeValue();
-        Intent intent = new Intent(this, ViewPantry.class);
-        startActivity(intent);
+    public void generateList(){
+
     }
 
-    public void goEdit(View view){
-        Intent intent = new Intent(this, EditPantryItem.class);
-        intent.putExtra(Constants.KEY_LIST_ID, mListId);
-        arrayAdapter.clear();
-
-        startActivity(intent);
-    }
-
-    public void goGenerateList(View view){
-        Intent intent = new Intent(this, GenerateList.class);
-        intent.putExtra(Constants.KEY_LIST_ID, mListId);
-        arrayAdapter.clear();
-        startActivity(intent);
-    }
     /**
      * When the user clicks back go to Main Activity
      * @param view

@@ -88,7 +88,6 @@ public class AddItemRecipe extends AppCompatActivity {
             Toast.makeText(this, "No name for the ingredient", Toast.LENGTH_SHORT).show();
         }
         else {
-
             item = ingredient.getText().toString();
             ingredients.add(item);
             toast(view);

@@ -29,6 +29,7 @@ public class ViewPantry extends AppCompatActivity implements AdapterView.OnItemS
     ArrayList<String> spinList = new ArrayList<String>();
 
     FirebaseListAdapter<PantryItem> fbAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
