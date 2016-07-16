@@ -2,27 +2,13 @@ package com.example.zaccianflone.pantrypro;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.util.Pair;
-
-import com.example.zaccianflone.pantrypro.database.Adding;
-import com.example.zaccianflone.pantrypro.database.Create;
-import com.example.zaccianflone.pantrypro.database.DatabaseUpdate;
-import com.example.zaccianflone.pantrypro.pantry.Item;
-import com.example.zaccianflone.pantrypro.pantry.Pantry;
-import com.example.zaccianflone.pantrypro.pantry.Recipe;
-import com.firebase.client.Firebase;
-
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class AddItemRecipe extends AppCompatActivity {
@@ -59,9 +45,6 @@ public class AddItemRecipe extends AppCompatActivity {
             return;
         }
 
-        addItem(view);
-        clearFields();
-        toast(view);
     }
 
     private Boolean checkFields() {
@@ -92,8 +75,6 @@ public class AddItemRecipe extends AppCompatActivity {
         items.add(quantity.getText().toString());
         items.add(units.getText().toString());
 
-        Pantry item = new Recipe();
-        item.addOrEdit(items);
     }
 
 
