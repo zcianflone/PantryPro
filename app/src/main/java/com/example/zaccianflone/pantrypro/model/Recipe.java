@@ -2,6 +2,7 @@ package com.example.zaccianflone.pantrypro.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,20 +12,15 @@ public class Recipe {
 
     String name;
     String description;
-    String quantity;
-    String ingredient;
-    String unitType;
+    ArrayList<String> ingredients = new ArrayList<String>();
 
     public Recipe() {
-
     }
 
-    public Recipe(String name, String description, String quantity, String ingredient, String unitType) throws ParseException {
+    public Recipe(String name, String description, ArrayList<String> ingredients) throws ParseException {
         this.name = name;
         this.description = description;
-        this.quantity = quantity;
-        this.unitType = unitType;
-        this.ingredient = ingredient;
+        this.ingredients = ingredients;
     }
 
     public String getName() {
@@ -35,16 +31,7 @@ public class Recipe {
         return description;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public ArrayList<String> getIngredient() {
+        return ingredients;
     }
-
-    public String getIngredient() {
-        return ingredient;
-    }
-
-    public String getUnitType() {
-        return unitType;
-    }
-
 }
