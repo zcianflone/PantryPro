@@ -3,7 +3,6 @@ package com.example.zaccianflone.pantrypro;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,11 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zaccianflone.pantrypro.model.PantryItem;
-import com.firebase.client.DataSnapshot;
+import com.example.zaccianflone.pantrypro.model.Recipe;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.ArrayList;
@@ -26,12 +22,12 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
 
     Firebase ref = new Firebase("https://pantrypro-a7109.firebaseio.com/recipe");
     ArrayList<String> spinList = new ArrayList<String>();
-    FirebaseListAdapter<PantryItem> fbAdapter;
+    FirebaseListAdapter<Recipe> fbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_pantry);
+        setContentView(R.layout.activity_my_recipes);
         ListView mListView = (ListView) findViewById(R.id.listView);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -42,26 +38,7 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
         spinList.add("Newest to Oldest");
         spinList.add("Oldest to Newest");
         spinList.add("Alphabetic Order");
-        spinList.add("Exp Date");
-/*
-        groupRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
 
-                for(DataSnapshot child: snapshot.getChildren())
-                {
-                    spinList.add((String) child.getValue());
-                    Log.d("Inside Snap", (String) child.getValue());
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                finish();
-                return;
-            }
-        });
-*/
 
 
         spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinList);
@@ -83,10 +60,10 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PantryItem selectedItem = fbAdapter.getItem(position);
+                Recipe selectedRecipe = fbAdapter.getItem(position);
 
-                if (selectedItem != null) {
-                    Intent intent = new Intent(MyRecipes.this, PantryListDetails.class);
+                if (selectedRecipe != null) {
+                    Intent intent = new Intent(MyRecipes.this, RecipeDetail.class);
                     /* Get the list ID using the adapter's get ref method to get the Firebase
                      * ref and then grab the key.
                      */
@@ -119,70 +96,39 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
         ListView mListView = (ListView) findViewById(R.id.listView);
         TextView myText = (TextView) view;
 
-        Log.d("in item selected", myText.getText().toString() );
-
         if (position == 0) {
             fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("invertedTime")) {
-                        @Override
-                        protected void populateView(View view, PantryItem pantryItem, int position) {
+                    new FirebaseListAdapter<Recipe>(this, Recipe.class, android.R.layout.simple_list_item_1, ref.orderByChild("invertedTime")) {
+                        protected void populateView(View view, Recipe recipe, int position) {
                             TextView textView = (TextView) view.findViewById(android.R.id.text1);
-                            textView.setText(pantryItem.getName());
+                            textView.setText(recipe.getName());
                         }
                     };
 
         }
-        else if (position == 1)
-        {
+
+        else if (position == 1) {
             fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref) {
-                        @Override
-                        protected void populateView(View view, PantryItem pantryItem, int position) {
-                            TextView textView = (TextView)view.findViewById(android.R.id.text1);
-                            textView.setText(pantryItem.getName());
+                    new FirebaseListAdapter<Recipe>(this, Recipe.class, android.R.layout.simple_list_item_1, ref) {
+                        protected void populateView(View view, Recipe recipe, int position) {
+                            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                            textView.setText(recipe.getName());
                         }
                     };
+
         }
-        else if (position == 2)
-        {
+
+        else if (position == 2) {
             fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("name")) {
-                        @Override
-                        protected void populateView(View view, PantryItem pantryItem, int position) {
-                            TextView textView = (TextView)view.findViewById(android.R.id.text1);
-                            textView.setText(pantryItem.getName());
+                    new FirebaseListAdapter<Recipe>(this, Recipe.class, android.R.layout.simple_list_item_1, ref.orderByChild("name")) {
+                        protected void populateView(View view, Recipe recipe, int position) {
+                            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                            textView.setText(recipe.getName());
                         }
                     };
+
         }
-/*
-        else if (position == 3)
-        {
-            fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("expDate")) {
-                        @Override
-                        protected void populateView(View view, PantryItem pantryItem, int position) {
-                            TextView textView = (TextView)view.findViewById(android.R.id.text1);
 
-
-                            textView.setText(pantryItem.getName() +"      Exp: "+ pantryItem.getTextExpDate());
-                        }
-                    };
-        }
-        */
-        else{
-            /*
-            fbAdapter =
-                    new FirebaseListAdapter<PantryItem>(this, PantryItem.class, android.R.layout.simple_list_item_1, ref.orderByChild("group").equalTo(myText.getText().toString())) {
-                        @Override
-                        protected void populateView(View view, PantryItem pantryItem, int position) {
-                            TextView textView = (TextView)view.findViewById(android.R.id.text1);
-
-
-                            textView.setText(pantryItem.getName());
-                        }
-                    };
-                    */
-        }
 
         Toast.makeText(this, "You Selected " +myText.getText(), Toast.LENGTH_SHORT).show();
 
