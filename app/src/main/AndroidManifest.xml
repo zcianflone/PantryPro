@@ -33,7 +33,8 @@
         <!-- <activity android:name=".MyRecipes" /> -->
         <activity android:name=".RecipeName" />
         <activity android:name=".PantryListDetails" />
-        <activity android:name=".EditPantryItem"></activity>
+        <activity android:name=".EditPantryItem" />
+        <activity android:name=".RecipeDetail"></activity>
     </application>
 
 </manifest>
