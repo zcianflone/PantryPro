@@ -46,7 +46,7 @@ public class AddItemRecipe extends AppCompatActivity {
     }
 
     public void goBack(View view) {
-        Intent intent = new Intent(this, MakeRecipe.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
