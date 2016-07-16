@@ -47,10 +47,8 @@
         android:text="   Submit   "
         android:id="@+id/button5"
         android:onClick="goToMakeRecipe"
-        android:layout_alignBaseline="@+id/back"
-        android:layout_alignBottom="@+id/back"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
