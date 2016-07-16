@@ -11,15 +11,15 @@ import java.util.Date;
 public class Recipe {
 
     String name;
-    String description;
+    String directions;
     ArrayList<String> ingredients = new ArrayList<String>();
 
     public Recipe() {
     }
 
-    public Recipe(String name, String description, ArrayList<String> ingredients) throws ParseException {
+    public Recipe(String name, String directions, ArrayList<String> ingredients) throws ParseException {
         this.name = name;
-        this.description = description;
+        this.directions = directions;
         this.ingredients = ingredients;
     }
 
@@ -28,7 +28,7 @@ public class Recipe {
     }
 
     public String getDescription() {
-        return description;
+        return directions;
     }
 
     public ArrayList<String> getIngredient() {
