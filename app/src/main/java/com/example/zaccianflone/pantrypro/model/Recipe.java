@@ -27,11 +27,11 @@ public class Recipe {
         return name;
     }
 
-    public String getDescription() {
+    public String getDirections() {
         return directions;
     }
 
-    public ArrayList<String> getIngredient() {
+    public ArrayList<String> getIngredients() {
         return ingredients;
     }
 }
