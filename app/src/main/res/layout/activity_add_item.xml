@@ -45,7 +45,7 @@
         android:inputType="textPersonName"
         android:hint="Example: Broccoli"
         android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/editName"
         android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -56,7 +56,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Expiration Date:"
         android:id="@+id/textView9"
-        android:layout_below="@+id/editText6"
+        android:layout_below="@+id/editName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -77,7 +77,7 @@
         android:inputType="number"
         android:hint="Example: 13"
         android:ems="15"
-        android:id="@+id/editText8"
+        android:id="@+id/editQuantity"
         android:layout_below="@+id/textView10"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -88,7 +88,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Units:"
         android:id="@+id/textView11"
-        android:layout_below="@+id/editText8"
+        android:layout_below="@+id/editQuantity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -98,7 +98,7 @@
         android:inputType="textPersonName"
         android:hint="Example: oz"
         android:ems="10"
-        android:id="@+id/editText9"
+        android:id="@+id/editUnits"
         android:layout_below="@+id/textView11"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -110,8 +110,8 @@
         android:id="@+id/button"
         android:onClick="addItem"
         android:layout_below="@+id/editGroup"
-        android:layout_alignRight="@+id/editText9"
-        android:layout_alignEnd="@+id/editText9" />
+        android:layout_alignRight="@+id/editUnits"
+        android:layout_alignEnd="@+id/editUnits" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Group"
         android:id="@+id/textGroup"
-        android:layout_below="@+id/editText9"
+        android:layout_below="@+id/editUnits"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

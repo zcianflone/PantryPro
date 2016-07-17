@@ -7,36 +7,43 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.example.zaccianflone.pantrypro.model.PantryItem;
+import com.example.zaccianflone.pantrypro.model.Ingredient;
 import com.example.zaccianflone.pantrypro.model.Recipe;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.ArrayList;
 
 public class RecipeDetail extends AppCompatActivity {
 
-    private String mListId;
+    private String mListId, recipeName;
     private Recipe mRecipe;
     ArrayList<String> RecipeList = new ArrayList<String>();
     Firebase ref;
+    Firebase ingredientRef;
     ArrayAdapter<String> arrayAdapter;
+    FirebaseListAdapter<Ingredient> fbAdapter;
+
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantry_list_details);
+        setContentView(R.layout.activity_recipe_detail);
 
         ListView mListView = (ListView) findViewById(R.id.listView);
 
          /* Get the push ID from the extra passed by View Pantry */
         Intent intent = this.getIntent();
         mListId = intent.getStringExtra(Constants.KEY_LIST_ID);
+        recipeName = intent.getStringExtra("recipeName");
 
         Log.d("RecipeDetail", mListId);
         if (mListId == null) {
@@ -49,6 +56,13 @@ public class RecipeDetail extends AppCompatActivity {
          */
         ref = new Firebase("https://pantrypro-a7109.firebaseio.com/recipe").child(mListId);
 
+       /* fbAdapter =
+                new FirebaseListAdapter<String>(this, String.class, android.R.layout.simple_list_item_1, ref) {
+                    protected void populateView(View view, Recipe recipe, int position) {
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        textView.setText(recipe.getName());
+                    }
+                };*/
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,9 +85,10 @@ public class RecipeDetail extends AppCompatActivity {
                 }
 
                 mRecipe = recipe;
+                recipeName = mRecipe.getName();
 
                 Log.d("Hi", mRecipe.getName());
-                RecipeList = (mRecipe.getIngredients());
+
             }
 
             @Override
@@ -81,15 +96,27 @@ public class RecipeDetail extends AppCompatActivity {
                 finish();
                 return;
             }
+
+
         });
 
 
+       ingredientRef = new Firebase("https://pantrypro-a7109.firebaseio.com/ingredients");
 
-        arrayAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                RecipeList);
+        fbAdapter =
+                new FirebaseListAdapter<Ingredient>(this, Ingredient.class, android.R.layout.simple_list_item_1, ingredientRef.orderByChild("recipeName").equalTo(recipeName)) {
+                    protected void populateView(View view, Ingredient ingredient, int position) {
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        textView.setText(ingredient.getName());
+                    }
+                };
 
-        mListView.setAdapter(arrayAdapter);
+        fbAdapter.notifyDataSetChanged();
+        mListView.setAdapter(fbAdapter);
+
+        //Log.d("recipe name", recipeName);
+
+
 
     }
 

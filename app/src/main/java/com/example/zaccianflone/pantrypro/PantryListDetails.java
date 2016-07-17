@@ -91,8 +91,7 @@ public class PantryListDetails extends AppCompatActivity {
 
 
 
-        arrayAdapter = new ArrayAdapter<String>(this,
-                                                                    android.R.layout.simple_list_item_1,
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                                                                     PantryList);
 
        mListView.setAdapter(arrayAdapter);

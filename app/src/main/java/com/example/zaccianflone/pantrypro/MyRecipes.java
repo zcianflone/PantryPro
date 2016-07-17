@@ -69,6 +69,8 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
                      */
                     String listId = fbAdapter.getRef(position).getKey();
                     intent.putExtra(Constants.KEY_LIST_ID, listId);
+                    intent.putExtra("recipeName", selectedRecipe.getName());
+
                     /* Starts an active showing the details for the selected list */
                     startActivity(intent);
                 }

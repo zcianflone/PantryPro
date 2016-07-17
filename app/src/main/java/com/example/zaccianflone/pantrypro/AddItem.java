@@ -43,10 +43,10 @@ public class AddItem extends AppCompatActivity {
 
         boolean addToast = false;
 
-        EditText mName = (EditText) findViewById(R.id.editText6);
+        EditText mName = (EditText) findViewById(R.id.editName);
         EditText mExpDate = (EditText) findViewById(R.id.editText7);
-        EditText mQuantity = (EditText) findViewById(R.id.editText8);
-        EditText mUnit = (EditText) findViewById(R.id.editText9);
+        EditText mQuantity = (EditText) findViewById(R.id.editQuantity);
+        EditText mUnit = (EditText) findViewById(R.id.editUnits);
         EditText mGroup = (EditText) findViewById(R.id.editGroup);
 
         String name = mName.getText().toString();

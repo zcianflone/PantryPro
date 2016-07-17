@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.zaccianflone.pantrypro.model.PantryItem;
 import com.example.zaccianflone.pantrypro.model.Recipe;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -77,7 +76,7 @@ public class GenerateList extends AppCompatActivity {
                 mRecipe = recipe;
 
                 Log.d("Hi", mRecipe.getName());
-                RecipeList = (mRecipe.getIngredients());
+                //RecipeList = (mRecipe.getIngredients());
 
                 generateList();
 
