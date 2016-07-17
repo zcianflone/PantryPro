@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -24,10 +26,14 @@ public class GenerateList extends AppCompatActivity {
     Firebase ingredientRef, pantryRef;
     String recipeName;
     ArrayList<String> recipeIngredients = new ArrayList<String>();
+    ArrayAdapter<String> arrayAdapter;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_list);
+
+        ListView mListView = (ListView) findViewById(R.id.listView);
 
         Intent intent = this.getIntent();
         recipeName = intent.getStringExtra("recipeName");
@@ -56,11 +62,12 @@ public class GenerateList extends AppCompatActivity {
                             Log.d("items 1", items);
                         }
 
-                        
+
                     }
 
                 }
             }
+
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
@@ -69,9 +76,12 @@ public class GenerateList extends AppCompatActivity {
             }
         });
 
-        for (String item : recipeIngredients){
-            Log.d("items 2", item);
-        }
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                recipeIngredients);
+
+        mListView.setAdapter(arrayAdapter);
+
+       
     }
 
 
