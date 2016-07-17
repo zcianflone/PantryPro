@@ -170,6 +170,7 @@ public class RecipeDetail extends AppCompatActivity {
     public void goGenerateList(View view){
         Intent intent = new Intent(RecipeDetail.this, GenerateList.class);
         intent.putExtra(Constants.KEY_LIST_ID, mListId);
+        intent.putExtra("recipeName", recipeName);
         startActivity(intent);
     }
     /**
