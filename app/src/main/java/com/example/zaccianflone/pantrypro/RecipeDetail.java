@@ -23,7 +23,7 @@ public class RecipeDetail extends AppCompatActivity {
 
     private String mListId, recipeName;
     private Recipe mRecipe;
-    ArrayList<String> RecipeList = new ArrayList<String>();
+
     Firebase ref;
     Firebase ingredientRef;
     ArrayAdapter<String> arrayAdapter;
@@ -135,9 +135,8 @@ public class RecipeDetail extends AppCompatActivity {
     }
 
     public void goGenerateList(View view){
-        Intent intent = new Intent(this, GenerateList.class);
+        Intent intent = new Intent(RecipeDetail.this, GenerateList.class);
         intent.putExtra(Constants.KEY_LIST_ID, mListId);
-        arrayAdapter.clear();
         startActivity(intent);
     }
     /**
@@ -145,7 +144,7 @@ public class RecipeDetail extends AppCompatActivity {
      * @param view
      */
     public void goBack(View view) {
-        Intent intent = new Intent(this, ViewPantry.class);
+        Intent intent = new Intent(this, MyRecipes.class);
         startActivity(intent);
     }
 }
