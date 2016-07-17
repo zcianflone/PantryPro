@@ -27,7 +27,7 @@ public class GenerateList extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
 
     // Variables used to pull the pantry
-    Firebase refP = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry");
+    Firebase refP;
 
 
 
@@ -52,6 +52,7 @@ public class GenerateList extends AppCompatActivity {
          * Create Firebase reference
          */
         ref = new Firebase("https://pantrypro-a7109.firebaseio.com/recipe").child(mListId);
+        refP = new Firebase("https://pantrypro-a7109.firebaseio.com/pantry");
 
 
         ref.addValueEventListener(new ValueEventListener() {
