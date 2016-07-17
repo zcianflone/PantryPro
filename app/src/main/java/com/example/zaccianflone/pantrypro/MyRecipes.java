@@ -28,6 +28,7 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
+
         ListView mListView = (ListView) findViewById(R.id.listView);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -80,8 +81,6 @@ public class MyRecipes extends AppCompatActivity implements AdapterView.OnItemSe
 
 
     }
-
-
 
     /**
      * When the user clicks back go to Main Activity
