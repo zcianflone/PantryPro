@@ -17,8 +17,6 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseListAdapter;
 
-import java.util.ArrayList;
-
 public class RecipeDetail extends AppCompatActivity {
 
     private String mListId, recipeName;
@@ -121,8 +119,43 @@ public class RecipeDetail extends AppCompatActivity {
     }
 
     public void remove(View view){
+
+
+      /*  ingredientRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for(DataSnapshot child: snapshot.getChildren())
+                {
+                    String name = (String) child.child("recipeName").getValue();
+                    Firebase tempRef = child.getRef();
+
+                    Log.d("ingred name", name);
+                    Log.d("recipe name", recipeName);
+
+                    if (name.equals(recipeName)){
+
+                       // tempRef.removeValue();
+                        Log.d("ingred name", name);
+                    }
+
+                    //Log.d("ingred name", name);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                finish();
+                return;
+            }
+        });*/
+
+        //unfortunately this leaves some trash in the FireBase as the ingredients aren't removed.
+        //shouldn't impact the user's experience as they can't get to those ingredients.
+        //needs to be resolved.
         ref.removeValue();
-        Intent intent = new Intent(this, ViewPantry.class);
+        Intent intent = new Intent(this, MyRecipes.class);
         startActivity(intent);
     }
 
