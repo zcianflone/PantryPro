@@ -1,6 +1,6 @@
 package com.example.zaccianflone.pantrypro.pantry;
 
-import com.example.zaccianflone.pantrypro.database.Create;
+//import com.example.zaccianflone.pantrypro.database.Create;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,8 +61,8 @@ public class Recipe {
     public void addRecipe() {
         HashMap<String, Object> recipe = new HashMap<>();
         recipe.put(name, storeRecipe());
-        Create newRecipe = new Create();
-        newRecipe.execute(recipe, "Recipe");
+        //Create newRecipe = new Create();
+        //newRecipe.execute(recipe, "Recipe");
     }
 }
 
